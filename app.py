@@ -2,7 +2,9 @@ import streamlit as st
 from PIL import Image
 from fastcore.all import *
 from fastai.vision.all import *
-import streamlit.components.v1 as components
+import pathlib
+plt = platform.system()
+if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
 
 st.set_page_config(page_title="Art or Waste")
 
