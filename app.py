@@ -27,11 +27,11 @@ with st.sidebar:
     st.markdown("In future more art categories will be added.")
     st.markdown("""In production, such a model can be used as part of a mechanical waste recycling 
                 drive-chain that automatically sorts your trash for further processing, 
-                and alerts you when you have possibly mistakenly discarded something of value.""")
+                and alerts you when you could have possibly discarded something of value by mistake.""")
     st.markdown("""This project is still in its infancy, so if your art gets missclassified as trash, 
                 please attach it to an email and send it through to artorwaste@gmail.com.""")
     st.markdown("""The model will be retrained with your art so that it can better able to 
-                recognise your ingenuity in futute.""")
+                recognise your style of ingenuity in futute.""")
 
 st.title("Art or Waste")
 
