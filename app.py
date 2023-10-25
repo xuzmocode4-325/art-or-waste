@@ -15,6 +15,24 @@ path = Path()
 if path.ls(file_exts='.pkl'):
     learn_inf = load_learner(path/'model.pkl')
 
+with st.sidebar:
+    st.title("""Do Not Trash Your Art Just Yet ♻♻♻""")
+    st.markdown("""This fun project at present will classifies images as either `fine art` or one of five types of 
+                waste:""")
+    st.write("`food`")
+    st.write("`glass`")
+    st.write("`metal`")
+    st.write("`paper`")
+    st.write("`plastic`")
+    st.markdown("In future more art categories will be added.")
+    st.markdown("""In production, such a model can be used as part of a mechanical waste recycling 
+                drive-chain that automatically sorts your trash for further processing, 
+                and alerts you when you have possibly mistakenly discarded something of value.""")
+    st.markdown("""This project is still in its infancy, so if your art gets missclassified as trash, 
+                please attach it to an email and send it through to artorwaste@gmail.com.""")
+    st.markdown("""The model will be retrained with your art so that it can better able to 
+                recognise your ingenuity in futute.""")
+
 st.title("Art or Waste")
 
 file_name = st.file_uploader("Upload an artwork in any image format.")
