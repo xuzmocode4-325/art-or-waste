@@ -17,7 +17,7 @@ if path.ls(file_exts='.pkl'):
 
 with st.sidebar:
     st.title("""Do Not Trash Your Art Just Yet ♻♻♻""")
-    st.markdown("""This fun project at present will classifies images as either `fine art` or one of five types of 
+    st.markdown("""This fun project classifies images as either `fine art` or one of five types of 
                 waste:""")
     st.write("`food`")
     st.write("`glass`")
