@@ -33,7 +33,7 @@ plastic waste repurposing through art and developing AI waste identification and
 The model undergoes continuous retraining for improved predictions. Contributions of marine life or trash image 
 submissions help enhance the algorithm's accuracy and reduce bias.
 
-Feedback and suggestions are appreciated at artorwaste@gmail.com
+Feedback, suggestions and submissions are appreciated at artorwaste@gmail.com
     """)
     st.write()
     components.iframe(
