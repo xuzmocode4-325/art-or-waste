@@ -1,10 +1,12 @@
 import random 
+import pathlib
 import streamlit as st
 import streamlit.components.v1 as components
+
 from PIL import Image
 from fastcore.all import *
 from fastai.vision.all import *
-import pathlib
+
 plt = platform.system()
 if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
 
@@ -33,6 +35,7 @@ submissions help enhance the algorithm's accuracy and reduce bias.
 
 Feedback and suggestions are appreciated at artorwaste@gmail.com
     """)
+
     components.iframe(
        src = "https://github.com/sponsors/xuzmocode4-325/button", 
        height=32,
@@ -40,7 +43,8 @@ Feedback and suggestions are appreciated at artorwaste@gmail.com
     )
 
 st.title("Art or Waste")
-file_name = st.file_uploader("Upload an artwork in any image format.")
+st.write()
+file_name = st.file_uploader()
 
 
 test_pictures = Path('test_pictures')
