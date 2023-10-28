@@ -1,4 +1,6 @@
+import random 
 import streamlit as st
+import streamlit.components.v1 as components
 from PIL import Image
 from fastcore.all import *
 from fastai.vision.all import *
@@ -8,32 +10,46 @@ if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
 
 st.set_page_config(page_title="Art or Waste")
 
-classes = ['scrap paper', 'scrap metal', 'waste plastic', 'food scraps', 'scrap wood',
-               'visual art', 'pottery', 'wooden furniture', 'jewelery', 'plastic toy', 'glass waste']
+classes = ['plastic debri', 'people', 'marine life']
 
-path = Path()
+path = Path() 
 
 if path.ls(file_exts='.pkl'):
-    learn_inf = load_learner(path/'learner.pkl')
+    learn_inf = load_learner(path/'marine_learner.pkl')
 
 with st.sidebar:
-    st.title("""Do Not Trash Your Art Just Yet ♻♻♻""")
-    st.markdown("""This fun project classifies objects in images as either `scrap paper`, 
-                `scrap metal`, `waste plastic`, `food scraps`, `scrap wood`, `glass waste`, `visual art`, 
-                `pottery`, `wooden furniture`, `jewelery` or `plastic toy`.""")
-    st.markdown("In future more art or waste categories may be added.")
-    st.markdown("""In production, such a model can be used as part of a mechanical waste recycling 
-                drive-chain that automatically sorts your trash for further processing, 
-                and alerts you when you could have possibly discarded something of value by mistake.""")
-    st.markdown("""This project is still in its infancy, we value your feedback and suggestions. 
-                If your art gets missclassified as trash, please attach it to an email and send it through to 
-                artorwaste@gmail.com.""")
-    st.markdown("""We continously retrain our model to get better predictions. Any art or trash images 
-                submissions will help to make our algorithm more accurate and unbiased.""")
+    st.title("Trash Waste, Not E(art)h!")
+    st.subheader("♻♻♻♻♻♻")
+    st.markdown("""
+This project employs a vision learner to categorize objects in images as plastic debris, people, or marine life. 
+The model can be integrated into a drone-based waste collection and recycling drivetrain, autonomously 
+collecting plastic debris from beachfronts, riverbeds, and ocean floors.
+
+As part of the "Art or Waste" initiative, aiming to combat pollution, the project focuses on researching 
+plastic waste repurposing through art and developing AI waste identification and collection systems.
+
+The model undergoes continuous retraining for improved predictions. Contributions of marine life or trash image 
+submissions help enhance the algorithm's accuracy and reduce bias.
+
+Feedback and suggestions are appreciated at artorwaste@gmail.com
+    """)
+    components.iframe(
+       src = "https://github.com/sponsors/xuzmocode4-325/button", 
+       height=32,
+       width=114,
+    )
 
 st.title("Art or Waste")
-
 file_name = st.file_uploader("Upload an artwork in any image format.")
+
+
+test_pictures = Path('test_pictures')
+file_list = list(test_pictures.glob("*"))
+selection = random.sample(file_list, 9)
+
+cols = cycle(st.columns(3, gap="small"))
+for idx, picture in enumerate(selection):
+    next(cols).image(Image.open(picture), use_column_width = True)
 
 if file_name is not None:
     col1, col2 = st.columns([2, 1], gap="small")
@@ -48,6 +64,8 @@ if file_name is not None:
     try:
         prediction = learn_inf.predict(image)
     except RuntimeError:
+        st.warning("There seems to be an error processing that file. Please try again. If the error persists, try uploading a different image.")
+    except NameError:
         st.warning("There seems to be an error processing that file. Please try again. If the error persists, try uploading a different image.")
     else:
         title = prediction[0].title()
