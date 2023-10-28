@@ -77,4 +77,4 @@ if file_name is not None:
         vector = int(prediction[1])
         col2.header(f"""Result: `{title}`""")
         probs = round(float(prediction[2][vector]) * 100, 2)
-        col2.subheader("Probability: {}%")
+        col2.subheader(f"Probability: {probs}%")
