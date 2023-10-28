@@ -35,7 +35,7 @@ submissions help enhance the algorithm's accuracy and reduce bias.
 
 Feedback and suggestions are appreciated at artorwaste@gmail.com
     """)
-
+    st.write()
     components.iframe(
        src = "https://github.com/sponsors/xuzmocode4-325/button", 
        height=32,
@@ -43,9 +43,10 @@ Feedback and suggestions are appreciated at artorwaste@gmail.com
     )
 
 st.title("Art or Waste")
-st.write()
-file_name = st.file_uploader()
 
+st.write()
+
+file_name = st.file_uploader("Upload your own image or drag and drop one from below.")
 
 test_pictures = Path('test_pictures')
 file_list = list(test_pictures.glob("*"))
@@ -74,7 +75,6 @@ if file_name is not None:
     else:
         title = prediction[0].title()
         vector = int(prediction[1])
-        col1.header(f"""Result: `{title}`""")
-        
-        col2.subheader("Probability")
-        col2.write(f"""### {round(float(prediction[2][vector]) * 100, 2)}% """)
+        col2.header(f"""Result: `{title}`""")
+        probs = round(float(prediction[2][vector]) * 100, 2)
+        col2.subheader("Probability: {}%")
