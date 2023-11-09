@@ -1,9 +1,10 @@
+import timm
 import random 
 import pathlib
 import streamlit as st
 import streamlit.components.v1 as components
 
-from PIL import Image
+from PIL import Image 
 from fastcore.all import *
 from fastai.vision.all import *
 
